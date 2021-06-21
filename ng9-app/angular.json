@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "tv-show-rating": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/tv-show-rating",
+      "sourceRoot": "projects/tv-show-rating/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/tv-show-rating",
+            "index": "projects/tv-show-rating/src/index.html",
+            "main": "projects/tv-show-rating/src/main.ts",
+            "polyfills": "projects/tv-show-rating/src/polyfills.ts",
+            "tsConfig": "projects/tv-show-rating/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/tv-show-rating/src/favicon.ico",
+              "projects/tv-show-rating/src/assets"
+            ],
+            "styles": [
+              "projects/tv-show-rating/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/tv-show-rating/src/environments/environment.ts",
+                  "with": "projects/tv-show-rating/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tv-show-rating:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tv-show-rating:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tv-show-rating:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tv-show-rating/src/test.ts",
+            "polyfills": "projects/tv-show-rating/src/polyfills.ts",
+            "tsConfig": "projects/tv-show-rating/tsconfig.spec.json",
+            "karmaConfig": "projects/tv-show-rating/karma.conf.js",
+            "assets": [
+              "projects/tv-show-rating/src/favicon.ico",
+              "projects/tv-show-rating/src/assets"
+            ],
+            "styles": [
+              "projects/tv-show-rating/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tv-show-rating/tsconfig.app.json",
+              "projects/tv-show-rating/tsconfig.spec.json",
+              "projects/tv-show-rating/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/tv-show-rating/e2e/protractor.conf.js",
+            "devServerTarget": "tv-show-rating:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tv-show-rating:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "tv-show-rating"
 }
